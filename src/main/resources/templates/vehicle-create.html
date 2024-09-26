@@ -1,0 +1,115 @@
+<!-- <html>
+
+<head th:replace="~{header::header}"></head>
+
+<body>
+    <div class="container">
+        <form th:action="@{/vehicle/save}" method="post" enctype="multipart/form-data" th:object="${vehicle}">
+            <legend>Criar um novo Veículo</legend>
+
+             
+            <div class="mb-3">
+                <label class="form-label">Nome do Veículo</label>
+                <input class="form-control" type="text" th:field="*{name}" id="name" name="name" />
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-error"></span>
+            </div>
+
+            
+            <div class="mb-3">
+                <label class="form-label">Tipo (Carro/Moto)</label>
+                <select class="form-control" th:field="*{type}">
+                    <option th:each="type : ${T(br.edu.ibmec.projeto.backend.task_manager.model.Vehicle$VehicleType).values()}"
+                            th:value="${type}" th:text="${type}">Tipo</option>
+                </select>
+            </div>
+
+           
+            <div class="mb-3">
+                <label class="form-label">Data de Criação</label>
+                <input class="form-control" type="date" th:field="*{creationDate}" />
+            </div>
+
+            
+            <div class="mb-3">
+                <label class="form-label">Descrição</label>
+                <textarea class="form-control" th:field="*{description}"></textarea>
+            </div>
+
+           
+            <div class="mb-3">
+                <label class="form-label">Imagem do Veículo</label>
+                <input class="form-control" type="file" name="imageFile" />
+            </div>
+
+            
+            <div class="mb-3">
+                <label class="form-label">Fabricante</label>
+                <select class="form-select" th:field="*{manufacturer.id}">
+                    <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.id}" th:text="${manufacturer.name}"></option>
+                </select>
+            </div>
+
+            <input type="submit" value="Criar Veículo" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+
+</html> -->
+
+<html>
+
+<head th:replace="~{header::header}"></head>
+
+<body>
+    <div class="container">
+        <form th:action="@{/vehicle/save}" method="post" enctype="multipart/form-data" th:object="${vehicle}">
+            <legend>Criar um novo Veículo</legend>
+
+            <!-- Vehicle Name -->
+            <div class="mb-3">
+                <label class="form-label">Nome do Veículo</label>
+                <input class="form-control" type="text" th:field="*{name}" id="name" name="name" />
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-error"></span>
+            </div>
+
+            <!-- Vehicle Type (Enum Dropdown) -->
+            <div class="mb-3">
+                <label class="form-label">Tipo (Carro/Moto)</label>
+                <select class="form-control" th:field="*{type}">
+                    <option th:each="type : ${T(br.edu.ibmec.projeto.backend.task_manager.model.Vehicle$VehicleType).values()}"
+                            th:value="${type}" th:text="${type}">Tipo</option>
+                </select>
+            </div>
+
+            <!-- Creation Date -->
+            <div class="mb-3">
+                <label class="form-label">Data de Criação</label>
+                <input class="form-control" type="date" th:field="*{creationDate}" />
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label class="form-label">Descrição</label>
+                <textarea class="form-control" th:field="*{description}"></textarea>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="mb-3">
+                <label class="form-label">Imagem do Veículo</label>
+                <input class="form-control" type="file" name="imageFile" />
+            </div>
+
+            <!-- Manufacturer Selection -->
+            <div class="mb-3">
+                <label class="form-label">Fabricante</label>
+                <select class="form-select" th:field="*{manufacturer}">
+                    <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.id}" th:text="${manufacturer.name}"></option>
+                </select>
+            </div>            
+
+            <input type="submit" value="Criar Veículo" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+
+</html>

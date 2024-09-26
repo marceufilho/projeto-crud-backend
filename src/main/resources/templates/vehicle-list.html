@@ -1,0 +1,32 @@
+<html>
+<head th:replace="~{header::header}"></head>
+<body>
+    <h1>Listagem de Veículos</h1>
+    <a href="/vehicle/create">Criar Veículo</a>
+    <br /><br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Nome</td>
+                <td>Tipo</td>
+                <td>Data de Criação</td>
+                <td>Ações</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="vehicle : ${vehicles}">
+                <td th:text="${vehicle.id != null ? vehicle.id : 'N/A'}"></td>
+                <td th:text="${vehicle.name != null ? vehicle.name : 'No Name'}"></td>
+                <td th:text="${vehicle.type != null ? vehicle.type : 'Unknown'}"></td>
+                <td th:text="${vehicle.creationDate != null ? vehicle.creationDate : 'No Date'}"></td>
+                <td th:text="${vehicle.manufacturer != null ? vehicle.manufacturer.name : 'No Manufacturer'}"></td>
+                <td>
+                    <a th:href="@{/vehicle/edit/{id}(id=${vehicle.id})}">Editar</a>
+                    <a th:href="@{/vehicle/delete/{id}(id=${vehicle.id})}">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

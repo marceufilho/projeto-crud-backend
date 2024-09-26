@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{header::header}">
+    <title>Edit Vehicle</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Edit Vehicle</h1>
+        <form th:action="@{'/vehicle/update/' + ${vehicle.id}}" method="post" th:object="${vehicle}" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Vehicle Name</label>
+                <input class="form-control" type="text" th:field="*{name}" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Type</label>
+                <select class="form-select" th:field="*{type}">
+                    <option th:each="type : ${T(br.edu.ibmec.projeto.backend.task_manager.model.Vehicle.VehicleType).values()}"
+                            th:value="${type}" th:text="${type}"
+                            th:selected="${vehicle.type == type}">
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Creation Date</label>
+                <input class="form-control" type="date" th:field="*{creationDate}" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" th:field="*{description}"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Image</label>
+                <input class="form-control" type="file" name="imageFile" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Manufacturer</label>
+                <select class="form-select" th:field="*{manufacturer.id}">
+                    <option th:each="manufacturer : ${manufacturers}"
+                            th:value="${manufacturer.id}"
+                            th:text="${manufacturer.name}"
+                            th:selected="${vehicle.manufacturer?.id == manufacturer.id}">
+                    </option>
+                </select>
+            </div>
+            <input type="submit" value="Save Changes" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+
+</html>
